@@ -1,107 +1,155 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nail Magic</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nail Magic</title>
 
-<link rel="stylesheet" href="/esmalteria.css">
+    <link rel="stylesheet" href="/esmalteria.css">
 
-<link
-href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
-rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap"
+        rel="stylesheet">
 
 </head>
+
 <body>
 
 
 
-<section class="hero" id="inicio">
-<div class="subtitulo">Unhas impecáveis, autoestima renovada
+    <section class="hero" id="inicio">
+        <div class="subtitulo">Unhas impecáveis, autoestima renovada
 
-</div>
-<div class="hero-content">
+        </div>
+        <div class="hero-content">
 
-<h1 class="titulo">
-    <span class="escuro">Studio</span> <br> 
-    <span class="laranja">Juhcarvalho</span></h1>
+            <h1 class="titulo">
+                <span class="escuro">Studio</span> <br>
+                <span class="laranja">Juhcarvalho</span>
+            </h1>
 
-<p>
-Manicure, pedicure, blindagem, alongamentos e muito mais.
-</p>
+            <p class="color_p">
+                Trasforme suas mãos em obras de arte. Cuidado, delicadeza e design personalizado para você brilhar em
+                cada detalhe.
+            </p>
 
-<a href="#servicos" class="btn">
-Conheça nossos serviços
-</a>
+            <a href="#servicos" class="btn">
+                Conheça nossos serviços
+            </a>
 
-</div>
+        </div>
 
-</section>
+    </section>
 
-<section id="servicos">
+    <section id="galeria">
 
-<h2>Serviços</h2>
+        <h2>Galeria</h2>
 
-<div class="cards">
+        <div class="slider">
 
-<div class="card">
+            <div class="slides">
+                <input type="radio" name="radio-btn" id="radio 1">
+                <input type="radio" name="radio-btn" id="radio 2">
+                <input type="radio" name="radio-btn" id="radio 3">
+                <input type="radio" name="radio-btn" id="radio 4">
+                <div class="slide first">
+                    <img src="img/images.jpeg" alt="imagem 1">
+                </div>
 
-<h3>Manicure</h3>
+                <div class="slide">
+                    <img src="img/images.jpeg" alt="imagem 1">
+                </div>
 
-<p>Cuidados completos para suas unhas.</p>
+                <div class="slide ">
+                    <img src="img/images.jpeg" alt="imagem 1">
+                </div>
 
-</div>
+                <div class="slide">
+                    <img src="img/images.jpeg" alt="imagem 1">
+                </div>
 
-<div class="card">
+            </div>
 
-<h3>Alongamento</h3>
+        </div>
+        <div class="navigation-auto">
+            <div class="auto-btn1"></div>
+            <div class="auto-btn2"></div>
+            <div class="auto-btn3"></div>
+            <div class="auto-btn4"></div>
+        </div>
 
-<p>Gel, fibra e manutenção.</p>
+        <div class="manual-navigation">
+            <label for="radio1" class="manual-btn"></label>
+            <label for="radio2" class="manual-btn"></label>
+            <label for="radio3" class="manual-btn"></label>
+            <label for="radio4" class="manual-btn"></label>
+        </div>
 
-</div>
+        <section id="servicos">
 
-<div class="card">
+            <h2>Serviços</h2>
 
-<h3>Spa dos Pés</h3>
+            <div class="cards">
 
-<p>Relaxamento e hidratação.</p>
+                <div class="card">
 
-</div>
+                    <h3>Manicure</h3>
 
-</div>
+                    <p>Cuidados completos para suas unhas.</p>
 
-</section>
+                </div>
 
-<section id="sobre">
+                <div class="card">
 
-<h2>Sobre</h2>
+                    <h3>Alongamento</h3>
 
-<p>
-Somos especialistas em beleza e cuidados com unhas.
-</p>
+                    <p>Gel, fibra e manutenção.</p>
 
-</section>
+                </div>
 
-<section id="contato">
+                <div class="card">
 
-<h2>Contato</h2>
+                    <h3>Spa dos Pés</h3>
 
-<button>
-Agendar Horário
-</button>
+                    <p>Relaxamento e hidratação.</p>
 
-</section>
+                </div>
 
-<footer>
+            </div>
 
-© 2026 Nail Magic
+        </section>
 
-</footer>
+        <section id="sobre">
 
-<script src="js/script.js"></script>
+            <h2>Sobre</h2>
+
+            <p>
+                Somos especialistas em beleza e cuidados com unhas.
+            </p>
+
+        </section>
+
+        <section id="contato">
+
+            <h2>Contato</h2>
+
+            <button>
+                Agendar Horário
+            </button>
+
+        </section>
+
+        <footer>
+
+            © 2026 Nail Magic
+
+        </footer>
+
+        <script src="/esmalteria.js"></script>
 
 </body>
+
 </html>
