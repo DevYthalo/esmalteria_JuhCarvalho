@@ -6,34 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nail Magic</title>
 
-    <link rel="stylesheet" href="/esmalteria.css">
+    <link rel="stylesheet" href="esmalteria.css">
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap"
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
         rel="stylesheet">
 
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
 
-
-
     <section class="hero" id="inicio">
-        <div class="subtitulo">Unhas impecáveis, autoestima renovada
 
+        <div class="subtitulo">
+            Unhas impecáveis, autoestima renovada
         </div>
+
         <div class="hero-content">
 
             <h1 class="titulo">
-                <span class="escuro">Studio</span> <br>
+                <span class="escuro">Studio</span><br>
                 <span class="laranja">Juhcarvalho</span>
             </h1>
 
             <p class="color_p">
-                Trasforme suas mãos em obras de arte. Cuidado, delicadeza e design personalizado para você brilhar em
-                cada detalhe.
+                Transforme suas mãos em obras de arte.
+                Cuidado, delicadeza e design personalizado para você brilhar em cada detalhe.
             </p>
 
             <a href="#servicos" class="btn">
@@ -44,111 +46,188 @@
 
     </section>
 
-    <section id="galeria">
+    <!-- GALERIA -->
 
-        <h2>Galeria</h2>
+   <section id="galeria">
 
-        <div class="slider">
+    <h2>Galeria</h2>
 
-            <div class="slides">
-                <input type="radio" name="radio-btn" id="radio 1">
-                <input type="radio" name="radio-btn" id="radio 2">
-                <input type="radio" name="radio-btn" id="radio 3">
-                <input type="radio" name="radio-btn" id="radio 4">
-                <div class="slide first">
-                    <img src="img/images.jpeg" alt="imagem 1">
-                </div>
+    <div class="carousel">
 
-                <div class="slide">
-                    <img src="img/images.jpeg" alt="imagem 1">
-                </div>
+        <button class="carousel-btn prev">&#10094;</button>
 
-                <div class="slide ">
-                    <img src="img/images.jpeg" alt="imagem 1">
-                </div>
+        <div class="carousel-container">
 
-                <div class="slide">
-                    <img src="img/images.jpeg" alt="imagem 1">
-                </div>
+            <div class="carousel-track">
+
+                <img src="img/img1.jpeg" alt="Unha 1">
+
+                <img src="img/img2.jpeg" alt="Unha 2">
+
+                <img src="img/img3.jpeg" alt="Unha 3">
+
+                <img src="img/img4.jpeg" alt="Unha 4">
+
+                <img src="img/img5.jpeg" alt="Unha 5">
+
+                <img src="img/img6.jpeg" alt="Unha 6">
+
+                <img src="img/img7.jpeg" alt="Unha 7">
+
+                <img src="img/img8.jpeg" alt="Unha 8">
+
+                <img src="img/img9.jpeg" alt="Unha 9">
+
+                <img src="img/img10.jpeg" alt="Unha 10">
+
+                
+            </div>
+
+        </div>
+
+        <button class="carousel-btn next">&#10095;</button>
+
+    </div>
+
+    <div class="carousel-dots"></div>
+
+</section>
+
+<!-- Lightbox -->
+
+<div class="lightbox">
+
+    <span class="close">&times;</span>
+
+    <img class="lightbox-img">
+
+</div>
+
+    <!-- SERVIÇOS -->
+
+    <section id="servicos">
+
+        <h2>Serviços</h2>
+
+        <div class="cards">
+
+            <div class="card">
+
+                <h3>Manicure</h3>
+
+                <p>
+                    Cuidados completos para suas unhas.
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>Alongamento</h3>
+
+                <p>
+                    Gel, fibra e manutenção.
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>Spa dos Pés</h3>
+
+                <p>
+                    Relaxamento e hidratação.
+                </p>
 
             </div>
 
         </div>
-        <div class="navigation-auto">
-            <div class="auto-btn1"></div>
-            <div class="auto-btn2"></div>
-            <div class="auto-btn3"></div>
-            <div class="auto-btn4"></div>
-        </div>
 
-        <div class="manual-navigation">
-            <label for="radio1" class="manual-btn"></label>
-            <label for="radio2" class="manual-btn"></label>
-            <label for="radio3" class="manual-btn"></label>
-            <label for="radio4" class="manual-btn"></label>
-        </div>
+    </section>
 
-        <section id="servicos">
+    <!-- SOBRE -->
 
-            <h2>Serviços</h2>
+   <section id="sobre">
 
-            <div class="cards">
+    <div class="sobre-overlay">
 
-                <div class="card">
+        <div class="sobre-conteudo">
 
-                    <h3>Manicure</h3>
-
-                    <p>Cuidados completos para suas unhas.</p>
-
-                </div>
-
-                <div class="card">
-
-                    <h3>Alongamento</h3>
-
-                    <p>Gel, fibra e manutenção.</p>
-
-                </div>
-
-                <div class="card">
-
-                    <h3>Spa dos Pés</h3>
-
-                    <p>Relaxamento e hidratação.</p>
-
-                </div>
-
-            </div>
-
-        </section>
-
-        <section id="sobre">
-
-            <h2>Sobre</h2>
+            <h2>Sobre Mim</h2>
 
             <p>
-                Somos especialistas em beleza e cuidados com unhas.
+                Olá meninas, eu sou a Juciaria Carvalho e sou apaixonada pelo universo da beleza e do cuidado com as unhas. Há alguns anos transformei essa paixão em profissão, buscando constantemente aperfeiçoar minhas técnicas para oferecer um atendimento de qualidade, conforto e muita dedicação.
+
+                Acredito que cada cliente merece um atendimento único e personalizado. Meu objetivo é proporcionar não apenas unhas impecáveis, mas também um momento de autoestima, bem-estar e confiança.
+
+                No Studio JuhCarvalho cada detalhe é pensado com carinho para que você tenha uma experiência inesquecível.
             </p>
 
-        </section>
+        </div>
 
-        <section id="contato">
+    </div>
 
-            <h2>Contato</h2>
+</section>
 
-            <button>
-                Agendar Horário
-            </button>
+    <!-- CONTATO -->
 
-        </section>
+    <footer class="footer">
+ 
+    <div class="footer-container">
+        
 
-        <footer>
+        <div class="footer-col">
 
-            © 2026 Nail Magic
+            
+        <a href="https://wa.me/5545998139385" class="btn_agenda">
+            Agendar Horário
+</a>
+            <h2 class="span_rod">
+                Studio<span>Juhcarvalho</span>
+            </h2>
 
-        </footer>
+            <p>
+                Cuidando das suas mãos com amor, arte e muita dedicação.
+                Agende seu horário e sinta a diferença.
+            </p>
 
-        <script src="/esmalteria.js"></script>
+        </div>
+
+        <div class="footer-col">
+
+            <h3>CONTATO</h3>
+
+            <p>📞 (45) 9813-9385</p>
+
+            <p>📷 @studio_juhcarvalho_naildesigne</p>
+
+            <p>📍 Cascavel - PR</p>
+
+        </div>
+
+        <div class="footer-col">
+
+            <h3>HORÁRIO DE FUNCIONAMENTO</h3>
+
+            <p>🕒 Segunda à Sexta: 9h às 19h</p>
+
+            <p>🕒 Sábado: 9h às 17h</p>
+
+            <p>🕒 Domingo: Fechado</p>
+
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+
+        © 2026 Studio JuhCarvalho • Todos os direitos reservados.
+
+    </div>
+
+</footer>
+
+    <script src="esmalteria.js"></script>
 
 </body>
 
