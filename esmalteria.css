@@ -721,3 +721,259 @@ footer {
     display: flex;
     justify-content: center;
 }
+
+/* ==========================================
+   ANIMAÇÃO AO APARECER
+========================================== */
+
+.animar {
+    opacity: 0;
+    transform: translateY(40px);
+    transition:
+        opacity 0.9s ease,
+        transform 0.9s ease;
+}
+
+.animar.aparecer {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Quando o JavaScript adicionar essa classe */
+
+.aparecer {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* ==========================================
+   HOVER DOS CARDS
+========================================== */
+
+.card {
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+
+.card:hover {
+    transform: translateY(-10px) scale(1.02);
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+
+/* ==========================================
+   HOVER DAS FOTOS
+========================================== */
+
+.carousel-track img {
+    transition:
+        transform 0.5s ease,
+        filter 0.5s ease;
+}
+
+.carousel-track img:hover {
+    transform: scale(1.02);
+}
+
+/* ==============================
+   SERVIÇOS
+============================== */
+
+#servicos {
+    background: #f8f2e8;
+}
+
+#servicos h2 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 50px;
+    color: #341C18;
+    margin-bottom: 50px;
+}
+
+
+/* ÁREA DOS CARDS */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+
+/* CARD */
+
+.card {
+    position: relative;
+
+    padding: 45px 35px;
+
+    min-height: 260px;
+
+    background: #fff;
+
+    border-radius: 25px;
+
+    border: 1px solid rgba(201, 106, 56, 0.15);
+
+    box-shadow:
+        0 10px 30px rgba(52, 28, 24, 0.08);
+
+    overflow: hidden;
+
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease,
+        background 0.4s ease;
+}
+
+
+/* CÍRCULO DECORATIVO */
+
+.card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 140px;
+    height: 140px;
+
+    border-radius: 50%;
+
+    background: rgba(201, 106, 56, 0.08);
+
+    top: -60px;
+    right: -50px;
+
+    transition: 0.4s ease;
+}
+
+
+/* NÚMERO */
+
+.card::after {
+    content: "01";
+
+    position: absolute;
+
+    top: 25px;
+    right: 30px;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 24px;
+
+    color: #C96A38;
+
+    opacity: 0.7;
+}
+
+
+/* SEGUNDO CARD */
+
+.card:nth-child(2)::after {
+    content: "02";
+}
+
+
+/* TERCEIRO CARD */
+
+.card:nth-child(3)::after {
+    content: "03";
+}
+
+
+/* TÍTULO */
+
+.card h3 {
+    position: relative;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 32px;
+
+    color: #341C18;
+
+    margin-top: 30px;
+
+    margin-bottom: 15px;
+}
+
+
+/* TEXTO */
+
+.card p {
+    position: relative;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 15px;
+
+    line-height: 1.8;
+
+    color: #6a5f5f;
+
+    max-width: 250px;
+}
+
+
+/* HOVER */
+
+.card:hover {
+    transform: translateY(-12px);
+
+    background: #fffaf5;
+
+    box-shadow:
+        0 20px 45px rgba(52, 28, 24, 0.15);
+}
+
+
+/* CÍRCULO CRESCE NO HOVER */
+
+.card:hover::before {
+    transform: scale(1.5);
+}
+
+
+/* RESPONSIVO */
+
+@media (max-width: 800px) {
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+.icone-servico {
+    position: relative;
+
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #f8e8dd;
+
+    border-radius: 50%;
+
+    font-size: 25px;
+
+    transition: 0.4s ease;
+}
+
+.card:hover .icone-servico {
+    transform: rotate(8deg) scale(1.1);
+}
+
+
+

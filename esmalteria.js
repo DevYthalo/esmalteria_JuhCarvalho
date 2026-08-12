@@ -13,9 +13,10 @@ const closeBtn = document.querySelector(".close");
 let index = 0;
 let autoPlay;
 
-// ==========================
+
+// ==========================================
 // CRIA AS BOLINHAS
-// ==========================
+// ==========================================
 
 slides.forEach((_, i) => {
 
@@ -28,9 +29,13 @@ slides.forEach((_, i) => {
     }
 
     dot.addEventListener("click", () => {
+
         index = i;
+
         updateCarousel();
+
         restartAutoPlay();
+
     });
 
     dotsContainer.appendChild(dot);
@@ -39,59 +44,62 @@ slides.forEach((_, i) => {
 
 const dots = document.querySelectorAll(".dot");
 
-// ==========================
-// ATUALIZA CARROSSEL
-// ==========================
+
+// ==========================================
+// ATUALIZA O CARROSSEL
+// ==========================================
 
 function updateCarousel() {
 
-    track.style.transform = `translateX(-${index * 100}%)`;
+    track.style.transform =
+        `translateX(-${index * 100}%)`;
 
-    dots.forEach(dot => dot.classList.remove("active"));
+    dots.forEach(dot => {
+        dot.classList.remove("active");
+    });
 
     dots[index].classList.add("active");
 
 }
 
-// ==========================
-// PRÓXIMO
-// ==========================
+
+// ==========================================
+// PRÓXIMA IMAGEM
+// ==========================================
 
 function nextSlide() {
 
     index++;
 
     if (index >= slides.length) {
-
         index = 0;
-
     }
 
     updateCarousel();
 
 }
 
-// ==========================
-// ANTERIOR
-// ==========================
+
+// ==========================================
+// IMAGEM ANTERIOR
+// ==========================================
 
 function prevSlide() {
 
     index--;
 
     if (index < 0) {
-
         index = slides.length - 1;
-
     }
 
     updateCarousel();
 
 }
 
-// ==========================
-// BOTÕES
-// ==========================
+
+// ==========================================
+// BOTÃO PRÓXIMO
+// ==========================================
 
 nextBtn.addEventListener("click", () => {
 
@@ -101,6 +109,11 @@ nextBtn.addEventListener("click", () => {
 
 });
 
+
+// ==========================================
+// BOTÃO ANTERIOR
+// ==========================================
+
 prevBtn.addEventListener("click", () => {
 
     prevSlide();
@@ -109,13 +122,17 @@ prevBtn.addEventListener("click", () => {
 
 });
 
-// ==========================
-// AUTOPLAY
-// ==========================
+
+// ==========================================
+// PASSAGEM AUTOMÁTICA
+// ==========================================
 
 function startAutoPlay() {
 
-    autoPlay = setInterval(nextSlide, 3500);
+    autoPlay = setInterval(
+        nextSlide,
+        3500
+    );
 
 }
 
@@ -129,9 +146,10 @@ function restartAutoPlay() {
 
 startAutoPlay();
 
-// ==========================
+
+// ==========================================
 // LIGHTBOX
-// ==========================
+// ==========================================
 
 slides.forEach(img => {
 
@@ -145,15 +163,21 @@ slides.forEach(img => {
 
 });
 
+
+// FECHAR NO X
+
 closeBtn.addEventListener("click", () => {
 
     lightbox.style.display = "none";
 
 });
 
-lightbox.addEventListener("click", (e) => {
 
-    if (e.target === lightbox) {
+// FECHAR CLICANDO FORA DA FOTO
+
+lightbox.addEventListener("click", (event) => {
+
+    if (event.target === lightbox) {
 
         lightbox.style.display = "none";
 
@@ -161,13 +185,14 @@ lightbox.addEventListener("click", (e) => {
 
 });
 
-// ==========================
+
+// ==========================================
 // TECLADO
-// ==========================
+// ==========================================
 
-document.addEventListener("keydown", (e) => {
+document.addEventListener("keydown", (event) => {
 
-    if (e.key === "ArrowRight") {
+    if (event.key === "ArrowRight") {
 
         nextSlide();
 
@@ -175,7 +200,7 @@ document.addEventListener("keydown", (e) => {
 
     }
 
-    if (e.key === "ArrowLeft") {
+    if (event.key === "ArrowLeft") {
 
         prevSlide();
 
@@ -183,25 +208,36 @@ document.addEventListener("keydown", (e) => {
 
     }
 
+    if (event.key === "Escape") {
+
+        lightbox.style.display = "none";
+
+    }
+
 });
 
-// ==========================
-// SWIPE CELULAR
-// ==========================
+
+// ==========================================
+// SWIPE NO CELULAR
+// ==========================================
 
 let startX = 0;
 
-track.addEventListener("touchstart", (e) => {
+track.addEventListener("touchstart", (event) => {
 
-    startX = e.touches[0].clientX;
+    startX =
+        event.touches[0].clientX;
 
 });
 
-track.addEventListener("touchend", (e) => {
+track.addEventListener("touchend", (event) => {
 
-    let endX = e.changedTouches[0].clientX;
+    const endX =
+        event.changedTouches[0].clientX;
 
-    let distance = startX - endX;
+    const distance =
+        startX - endX;
+
 
     if (distance > 50) {
 
@@ -209,12 +245,92 @@ track.addEventListener("touchend", (e) => {
 
     }
 
+
     if (distance < -50) {
 
         prevSlide();
 
     }
 
+
     restartAutoPlay();
 
 });
+
+
+// ==========================================
+// ANIMAÇÃO DOS CARDS
+// ==========================================
+
+const cards =
+    document.querySelectorAll(".card");
+
+cards.forEach(card => {
+
+    card.addEventListener("mouseenter", () => {
+
+        card.classList.add("card-hover");
+
+    });
+
+
+    card.addEventListener("mouseleave", () => {
+
+        card.classList.remove("card-hover");
+
+    });
+
+});
+
+
+// ==========================================
+// ANIMAÇÃO AO ROLAR A PÁGINA
+// ==========================================
+
+const elementos = document.querySelectorAll(
+    ".card, #galeria, #sobre, .footer-col"
+);
+
+
+// Adiciona a classe que deixa o elemento
+// preparado para a animação
+
+elementos.forEach(elemento => {
+
+    elemento.classList.add("animar");
+
+});
+
+
+const observador = new IntersectionObserver(
+    (entries) => {
+
+        entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+                entry.target.classList.add("aparecer");
+
+                // Para de observar depois que apareceu
+                observador.unobserve(entry.target);
+
+            }
+
+        });
+
+    },
+    {
+        threshold: 0.15
+    }
+);
+
+
+elementos.forEach(elemento => {
+
+    observador.observe(elemento);
+
+});
+
+
+
+
