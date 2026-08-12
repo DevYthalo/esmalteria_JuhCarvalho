@@ -123,6 +123,7 @@ prevBtn.addEventListener("click", () => {
 });
 
 
+
 // ==========================================
 // PASSAGEM AUTOMÁTICA
 // ==========================================
@@ -328,6 +329,8 @@ const observador = new IntersectionObserver(
 elementos.forEach(elemento => {
 
     observador.observe(elemento);
+
+    
 
 });
 

@@ -8,6 +8,25 @@ html {
     scroll-behavior: smooth;
 }
 
+html,
+body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* Respeita usuários que preferem menos animação */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
 body {
 
     background:
@@ -42,52 +61,213 @@ body {
 
 }
 
+/* Foco visível para navegação por teclado */
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid #C96A38;
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+/*==================================================
+                    CABEÇALHO
+==================================================*/
+
 header {
 
     position: fixed;
     top: 0;
+    left: 0;
     width: 100%;
-    padding: 20px 8%;
+    padding: 18px 8%;
+    z-index: 1000;
 
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    background: rgb(255, 255, 255);
+    background: rgba(248, 242, 232, .7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 3px 20px rgba(52, 28, 24, .05);
 
-    box-shadow: 0 3px 12px rgba(0, 0, 0, .08);
+    transition: background .35s ease, box-shadow .35s ease, padding .35s ease;
 
+}
+
+header.scrolled {
+    padding: 12px 8%;
+    background: rgba(248, 242, 232, .92);
+    box-shadow: 0 3px 20px rgba(52, 28, 24, .09);
 }
 
 .logo {
 
-    font-size: 24px;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 26px;
     font-weight: 700;
+    text-decoration: none;
+    letter-spacing: .3px;
 
-    color: #c2185b;
+    color: #341C18;
 
+}
+
+.logo span {
+    color: #C96A38;
 }
 
 nav {
 
     display: flex;
-    gap: 25px;
+    align-items: center;
+    gap: 28px;
 
 }
 
 nav a {
 
     text-decoration: none;
-    color: #555;
+    color: #504c4e;
     font-weight: 500;
+    font-size: 15px;
+    position: relative;
 
     transition: .3s;
 
 }
 
+nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0;
+    height: 2px;
+    background: #C96A38;
+    transition: width .3s ease;
+}
+
 nav a:hover {
 
-    color: #c2185b;
+    color: #341C18;
+
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+nav a.nav-agendar {
+    background: #341C18;
+    color: #fff;
+    padding: 9px 22px;
+    border-radius: 20px;
+    transition: background .3s ease, transform .3s ease;
+}
+
+nav a.nav-agendar::after {
+    display: none;
+}
+
+nav a.nav-agendar:hover {
+    background: #C96A38;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+/* Botão hambúrguer (some no desktop) */
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 26px;
+    height: 18px;
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    z-index: 1020;
+}
+
+.menu-toggle span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background: #341C18;
+    border-radius: 2px;
+    transition: transform .3s ease, opacity .3s ease;
+}
+
+.menu-toggle.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Camada escura atrás do menu mobile aberto */
+
+.nav-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(20, 12, 10, .45);
+    z-index: 998;
+    opacity: 0;
+    transition: opacity .3s ease;
+}
+
+/*==========================
+    RESPONSIVO - CABEÇALHO
+==========================*/
+
+@media (max-width: 1024px) {
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: min(78%, 320px);
+        background: #f8f2e8;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 30px;
+        padding: 40px;
+        box-shadow: -12px 0 35px rgba(0, 0, 0, .12);
+        z-index: 1010;
+
+        transition: right .4s ease;
+    }
+
+    nav.active {
+        right: 0;
+    }
+
+    nav a {
+        font-size: 18px;
+    }
+
+    nav a.nav-agendar {
+        margin-top: 10px;
+    }
+
+    .nav-overlay.active {
+        display: block;
+        opacity: 1;
+    }
 
 }
 
@@ -116,12 +296,12 @@ nav a:hover {
 
 .escuro {
     color: #341C18;
-    font-size: 100px;
+    font-size: clamp(42px, 10vw, 100px);
 }
 
 .laranja {
     color: #C96A38;
-    font-size: 100px;
+    font-size: clamp(42px, 10vw, 100px);
 }
 
 /* #background:
@@ -151,6 +331,8 @@ radial-gradient(circle at 80% 100%,
     font-size: 20px;
 
     margin-bottom: 30px;
+
+    max-width: 600px;
 
 }
 
@@ -188,21 +370,21 @@ section {
 
 }
 
-h2 {
-
-    font-size: 38px;
-    margin-bottom: 40px;
-    text-align: center;
-
+/* Compensa a altura do cabeçalho fixo ao navegar pelas âncoras do menu */
+#inicio,
+#galeria,
+#servicos,
+#sobre,
+#instagram,
+#contato {
+    scroll-margin-top: 90px;
 }
 
-.cards {
+h2 {
 
-    display: grid;
-
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-
-    gap: 30px;
+    font-size: clamp(28px, 5vw, 38px);
+    margin-bottom: 40px;
+    text-align: center;
 
 }
 
@@ -223,18 +405,6 @@ h2 {
 .card:hover {
 
     transform: translateY(-8px);
-
-}
-
-footer {
-
-    padding: 40px;
-
-    text-align: center;
-
-    background: #111;
-
-    color: white;
 
 }
 
@@ -578,7 +748,7 @@ footer {
 
 .sobre-conteudo h2 {
 
-    font-size: 48px;
+    font-size: clamp(30px, 7vw, 48px);
 
     margin-bottom: 40px;
 
@@ -592,6 +762,31 @@ footer {
     line-height: 2;
 
     font-weight: 300;
+
+    margin-bottom: 20px;
+}
+
+.sobre-conteudo p:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 900px) {
+
+    /* background-attachment:fixed pode travar/gerar comportamento
+       inconsistente em telas de toque, então desativamos no mobile */
+    #sobre {
+        background-attachment: scroll;
+    }
+
+}
+
+@media (max-width: 700px) {
+
+    .sobre-conteudo p {
+        font-size: 16px;
+        line-height: 1.8;
+    }
+
 }
 
 
@@ -644,7 +839,7 @@ footer {
 
     font-family: "Cormorant Garamond", serif;
 
-    font-size: 42px;
+    font-size: clamp(30px, 6vw, 42px);
 
     margin-bottom: 20px;
 
@@ -790,7 +985,7 @@ footer {
 
 #servicos h2 {
     font-family: "Cormorant Garamond", serif;
-    font-size: 50px;
+    font-size: clamp(32px, 6vw, 50px);
     color: #341C18;
     margin-bottom: 50px;
 }
@@ -944,10 +1139,17 @@ footer {
 
 /* RESPONSIVO */
 
-@media (max-width: 800px) {
+@media (max-width: 1024px) {
 
     .cards {
         grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .card {
+        max-width: 480px;
+        width: 100%;
+        margin: 0 auto;
     }
 
 }
@@ -976,4 +1178,140 @@ footer {
 }
 
 
+/* ==============================
+   INSTAGRAM
+============================== */
 
+#instagram {
+    background: #f8f2e8;
+    text-align: center;
+}
+
+#instagram h2 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(32px, 6vw, 50px);
+    color: #341C18;
+    margin-bottom: 8px;
+}
+
+.instagram-sub {
+    color: #C96A38;
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: .3px;
+    margin-bottom: 45px;
+}
+
+.insta-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.insta-item {
+    position: relative;
+    display: block;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 18px;
+    box-shadow: 0 10px 25px rgba(52, 28, 24, .1);
+}
+
+.insta-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .5s ease;
+}
+
+.insta-overlay {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    background: linear-gradient(150deg, rgba(201, 106, 56, .88), rgba(52, 28, 24, .88));
+    opacity: 0;
+
+    transition: opacity .4s ease;
+}
+
+.insta-icon {
+    width: 30px;
+    height: 30px;
+}
+
+.insta-overlay span {
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+}
+
+.insta-item:hover .insta-overlay,
+.insta-item:focus-visible .insta-overlay {
+    opacity: 1;
+}
+
+.insta-item:hover img {
+    transform: scale(1.08);
+}
+
+@media (max-width: 600px) {
+
+    .insta-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
+
+}
+
+
+/* ==============================
+   RESPONSIVO GERAL
+============================== */
+
+@media (max-width: 600px) {
+
+    section {
+        padding: 60px 6%;
+    }
+
+    #galeria {
+        padding: 60px 6%;
+    }
+
+    .hero {
+        height: auto;
+        min-height: 100vh;
+        padding: 110px 6% 50px;
+    }
+
+    .hero p {
+        font-size: 17px;
+        padding: 0 4px;
+    }
+
+    #servicos h2,
+    #instagram h2 {
+        margin-bottom: 30px;
+    }
+
+    .card {
+        padding: 35px 25px;
+        min-height: unset;
+    }
+
+    .card h3 {
+        font-size: 26px;
+    }
+
+}
