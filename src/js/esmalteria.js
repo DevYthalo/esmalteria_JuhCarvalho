@@ -123,7 +123,6 @@ prevBtn.addEventListener("click", () => {
 });
 
 
-
 // ==========================================
 // PASSAGEM AUTOMÁTICA
 // ==========================================
@@ -165,7 +164,9 @@ slides.forEach(img => {
 });
 
 
+// ==========================================
 // FECHAR NO X
+// ==========================================
 
 closeBtn.addEventListener("click", () => {
 
@@ -174,7 +175,9 @@ closeBtn.addEventListener("click", () => {
 });
 
 
+// ==========================================
 // FECHAR CLICANDO FORA DA FOTO
+// ==========================================
 
 lightbox.addEventListener("click", (event) => {
 
@@ -303,6 +306,10 @@ elementos.forEach(elemento => {
 });
 
 
+// ==========================================
+// OBSERVADOR
+// ==========================================
+
 const observador = new IntersectionObserver(
     (entries) => {
 
@@ -326,14 +333,12 @@ const observador = new IntersectionObserver(
 );
 
 
+// ==========================================
+// OBSERVA OS ELEMENTOS
+// ==========================================
+
 elementos.forEach(elemento => {
 
     observador.observe(elemento);
 
-    
-
 });
-
-
-
-

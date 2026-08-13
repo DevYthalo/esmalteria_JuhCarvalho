@@ -1,0 +1,1881 @@
+/* ==================================================
+   RESET
+================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+html,
+body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 5% 10%,
+            rgba(255, 214, 194, 0.35) 0%,
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 95% 85%,
+            rgba(242, 198, 92, 0.38) 0%,
+            rgba(230, 174, 73, 0.18) 20%,
+            transparent 42%
+        ),
+
+        radial-gradient(
+            circle at 80% 100%,
+            rgba(255, 230, 170, 0.22) 0%,
+            transparent 35%
+        ),
+
+        #f8f2e8;
+
+    color: #341C18;
+}
+
+
+/* ==================================================
+   ACESSIBILIDADE
+================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+
+    }
+}
+
+
+a:focus-visible,
+button:focus-visible {
+
+    outline: 2px solid #C96A38;
+    outline-offset: 3px;
+    border-radius: 4px;
+
+}
+
+
+/* ==================================================
+   CABEÇALHO
+================================================== */
+
+header {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    padding: 18px 8%;
+
+    z-index: 1000;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    background: rgba(248, 242, 232, 0.7);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    box-shadow:
+        0 3px 20px rgba(52, 28, 24, 0.05);
+
+    transition:
+        background 0.35s ease,
+        box-shadow 0.35s ease,
+        padding 0.35s ease;
+
+}
+
+
+header.scrolled {
+
+    padding: 12px 8%;
+
+    background: rgba(248, 242, 232, 0.94);
+
+    box-shadow:
+        0 3px 20px rgba(52, 28, 24, 0.09);
+
+}
+
+
+/* ==================================================
+   LOGO
+================================================== */
+
+.logo {
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 26px;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+    letter-spacing: 0.3px;
+
+    color: #341C18;
+
+}
+
+.logo span {
+    color: #C96A38;
+}
+
+
+/* ==================================================
+   MENU
+================================================== */
+
+nav {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 28px;
+
+}
+
+nav a {
+
+    text-decoration: none;
+
+    color: #504c4e;
+
+    font-weight: 500;
+
+    font-size: 15px;
+
+    position: relative;
+
+    transition:
+        color 0.3s ease;
+
+}
+
+nav a::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -5px;
+
+    width: 0;
+
+    height: 2px;
+
+    background: #C96A38;
+
+    transition:
+        width 0.3s ease;
+
+}
+
+nav a:hover {
+    color: #341C18;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+
+/* ==================================================
+   BOTÃO AGENDAR DO MENU
+================================================== */
+
+nav a.nav-agendar {
+
+    background: #341C18;
+
+    color: white;
+
+    padding: 9px 22px;
+
+    border-radius: 20px;
+
+    transition:
+        background 0.3s ease,
+        transform 0.3s ease;
+
+}
+
+nav a.nav-agendar::after {
+    display: none;
+}
+
+nav a.nav-agendar:hover {
+
+    background: #C96A38;
+
+    color: white;
+
+    transform: translateY(-2px);
+
+}
+
+
+/* ==================================================
+   MENU HAMBÚRGUER
+================================================== */
+
+.menu-toggle {
+
+    display: none;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    width: 26px;
+    height: 18px;
+
+    background: transparent;
+
+    border: none;
+
+    padding: 0;
+
+    cursor: pointer;
+
+    z-index: 1020;
+
+}
+
+.menu-toggle span {
+
+    display: block;
+
+    height: 2px;
+
+    width: 100%;
+
+    background: #341C18;
+
+    border-radius: 2px;
+
+    transition:
+        transform 0.3s ease,
+        opacity 0.3s ease;
+
+}
+
+
+.menu-toggle.active span:nth-child(1) {
+
+    transform:
+        translateY(8px)
+        rotate(45deg);
+
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+
+    transform:
+        translateY(-8px)
+        rotate(-45deg);
+
+}
+
+
+/* ==================================================
+   OVERLAY DO MENU
+================================================== */
+
+.nav-overlay {
+
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(20, 12, 10, 0.45);
+
+    z-index: 998;
+
+    opacity: 0;
+
+    transition:
+        opacity 0.3s ease;
+
+}
+
+.nav-overlay.active {
+
+    display: block;
+
+    opacity: 1;
+
+}
+
+
+/* ==================================================
+   HERO
+================================================== */
+
+.hero {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 110px 8% 60px;
+
+}
+
+
+/* ==================================================
+   SUBTÍTULO
+================================================== */
+
+.subtitulo {
+
+    display: inline-block;
+
+    background-color: oklch(97% 0.01 80);
+
+    color: #000;
+
+    padding: 6px 18px;
+
+    border-radius: 20px;
+
+    font-size: 17px;
+
+    margin-bottom: 20px;
+
+    font-weight: 500;
+
+    border: 1px solid #b3acac;
+
+}
+
+
+/* ==================================================
+   TÍTULO
+================================================== */
+
+.titulo {
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-weight: 600;
+
+    line-height: 0.95;
+
+    text-align: center;
+
+    margin: 0 0 20px;
+
+}
+
+.escuro {
+
+    color: #341C18;
+
+    font-size: clamp(
+        52px,
+        10vw,
+        100px
+    );
+
+}
+
+.laranja {
+
+    color: #C96A38;
+
+    font-size: clamp(
+        52px,
+        10vw,
+        100px
+    );
+
+}
+
+
+.hero p {
+
+    font-size: 20px;
+
+    margin: 0 auto 30px;
+
+    max-width: 600px;
+
+}
+
+.color_p {
+    color: #504c4e;
+}
+
+
+/* ==================================================
+   BOTÕES
+================================================== */
+
+.btn {
+
+    display: inline-block;
+
+    padding: 15px 35px;
+
+    background: #f7f7f7;
+
+    color: #000;
+
+    border-radius: 30px;
+
+    text-decoration: none;
+
+    text-transform: capitalize;
+
+    border: 1px solid #b3acac;
+
+    transition:
+        background-color 0.4s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+
+}
+
+.btn:hover {
+
+    background: #bdbdbd;
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.15);
+
+}
+
+
+/* ==================================================
+   SEÇÕES
+================================================== */
+
+section {
+
+    padding: 100px 8%;
+
+}
+
+#inicio,
+#galeria,
+#servicos,
+#sobre,
+#instagram,
+#contato {
+
+    scroll-margin-top: 90px;
+
+}
+
+h2 {
+
+    font-size:
+        clamp(28px, 5vw, 38px);
+
+    margin-bottom: 40px;
+
+    text-align: center;
+
+}
+
+
+/* ==================================================
+   GALERIA
+================================================== */
+
+#galeria {
+
+    padding: 100px 8%;
+
+}
+
+
+.carousel {
+
+    position: relative;
+
+    width: 100%;
+
+    max-width: 1000px;
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+
+.carousel-container {
+
+    width: 100%;
+
+    overflow: hidden;
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 20px 45px rgba(0, 0, 0, 0.15);
+
+}
+
+
+.carousel-track {
+
+    display: flex;
+
+    transition:
+        transform 0.6s ease;
+
+}
+
+
+.carousel-track img {
+
+    min-width: 100%;
+
+    width: 100%;
+
+    height: 650px;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    user-select: none;
+
+    cursor: pointer;
+
+    display: block;
+
+    transition:
+        transform 0.5s ease,
+        filter 0.5s ease;
+
+}
+
+
+.carousel-track img:hover {
+    filter: brightness(0.95);
+}
+
+
+/* ==================================================
+   SETAS
+================================================== */
+
+.carousel-btn {
+
+    position: absolute;
+
+    width: 55px;
+
+    height: 55px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.85);
+
+    font-size: 28px;
+
+    cursor: pointer;
+
+    z-index: 10;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease;
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.15);
+
+}
+
+.carousel-btn:hover {
+
+    transform: scale(1.1);
+
+    background: white;
+
+}
+
+.prev {
+    left: -25px;
+}
+
+.next {
+    right: -25px;
+}
+
+
+/* ==================================================
+   BOLINHAS
+================================================== */
+
+.carousel-dots {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    margin-top: 25px;
+
+}
+
+.dot {
+
+    width: 14px;
+
+    height: 14px;
+
+    border-radius: 50%;
+
+    background: #c8c8c8;
+
+    cursor: pointer;
+
+    border: none;
+
+    padding: 0;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease;
+
+}
+
+.dot.active {
+
+    background: #C96A38;
+
+    transform: scale(1.3);
+
+}
+
+
+/* ==================================================
+   LIGHTBOX
+================================================== */
+
+.lightbox {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.92);
+
+    display: none;
+
+    justify-content: center;
+
+    align-items: center;
+
+    z-index: 99999;
+
+    padding: 30px;
+
+}
+
+.lightbox.active {
+    display: flex;
+}
+
+
+.lightbox img {
+
+    max-width: 90%;
+
+    max-height: 90%;
+
+    border-radius: 20px;
+
+    object-fit: contain;
+
+}
+
+
+.close {
+
+    position: absolute;
+
+    top: 20px;
+
+    right: 30px;
+
+    width: 50px;
+    height: 50px;
+
+    border: none;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 45px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+}
+
+
+/* ==================================================
+   SERVIÇOS
+================================================== */
+
+#servicos {
+
+    background: #f8f2e8;
+
+}
+
+#servicos h2 {
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size:
+        clamp(32px, 6vw, 50px);
+
+    color: #341C18;
+
+    margin-bottom: 50px;
+
+}
+
+
+/* ==================================================
+   CARDS
+================================================== */
+
+.cards {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 30px;
+
+    max-width: 1200px;
+
+    margin: auto;
+
+}
+
+
+.card {
+
+    position: relative;
+
+    padding: 45px 35px;
+
+    min-height: 300px;
+
+    background: white;
+
+    border-radius: 25px;
+
+    border:
+        1px solid rgba(
+            201,
+            106,
+            56,
+            0.15
+        );
+
+    box-shadow:
+        0 10px 30px rgba(
+            52,
+            28,
+            24,
+            0.08
+        );
+
+    overflow: hidden;
+
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease,
+        background 0.4s ease;
+
+}
+
+
+.card::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 140px;
+    height: 140px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(201, 106, 56, 0.08);
+
+    top: -60px;
+    right: -50px;
+
+    transition:
+        transform 0.4s ease;
+
+}
+
+
+.card::after {
+
+    content: "01";
+
+    position: absolute;
+
+    top: 25px;
+    right: 30px;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 24px;
+
+    color: #C96A38;
+
+    opacity: 0.7;
+
+}
+
+
+.card:nth-child(2)::after {
+    content: "02";
+}
+
+.card:nth-child(3)::after {
+    content: "03";
+}
+
+
+/* ==================================================
+   ÍCONE
+================================================== */
+
+.icone-servico {
+
+    position: relative;
+
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #f8e8dd;
+
+    border-radius: 50%;
+
+    font-size: 25px;
+
+    transition:
+        transform 0.4s ease;
+
+}
+
+
+.card:hover .icone-servico {
+
+    transform:
+        rotate(8deg)
+        scale(1.1);
+
+}
+
+
+/* ==================================================
+   TÍTULO DO CARD
+================================================== */
+
+.card h3 {
+
+    position: relative;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 32px;
+
+    color: #341C18;
+
+    margin-top: 30px;
+
+    margin-bottom: 15px;
+
+}
+
+
+/* ==================================================
+   TEXTO DO CARD
+================================================== */
+
+.card p {
+
+    position: relative;
+
+    font-size: 15px;
+
+    line-height: 1.8;
+
+    color: #6a5f5f;
+
+    max-width: 300px;
+
+}
+
+
+/* ==================================================
+   HOVER CARD
+================================================== */
+
+.card:hover {
+
+    transform:
+        translateY(-12px);
+
+    background: #fffaf5;
+
+    box-shadow:
+        0 20px 45px rgba(
+            52,
+            28,
+            24,
+            0.15
+        );
+
+}
+
+.card:hover::before {
+
+    transform:
+        scale(1.5);
+
+}
+
+
+/* ==================================================
+   SOBRE
+================================================== */
+
+#sobre {
+
+    padding: 0;
+
+    background-image:
+        url("../../img/juh.jpeg");
+
+    background-size: cover;
+
+    background-position: center;
+
+    background-repeat: no-repeat;
+
+    background-attachment: fixed;
+
+}
+
+
+.sobre-overlay {
+
+    width: 100%;
+
+    min-height: 100vh;
+
+    background:
+        rgba(0, 0, 0, 0.55);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 100px 8%;
+
+}
+
+
+.sobre-conteudo {
+
+    max-width: 900px;
+
+    color: white;
+
+    text-align: center;
+
+}
+
+
+.sobre-conteudo h2 {
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:
+        clamp(30px, 7vw, 48px);
+
+    margin-bottom: 40px;
+
+    color: white;
+
+}
+
+
+.sobre-conteudo p {
+
+    font-size: 20px;
+
+    line-height: 2;
+
+    font-weight: 300;
+
+    margin-bottom: 20px;
+
+}
+
+.sobre-conteudo p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* ==================================================
+   INSTAGRAM
+================================================== */
+
+#instagram {
+
+    background: #f8f2e8;
+
+    text-align: center;
+
+}
+
+
+#instagram h2 {
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:
+        clamp(32px, 6vw, 50px);
+
+    color: #341C18;
+
+    margin-bottom: 8px;
+
+}
+
+
+.instagram-sub {
+
+    color: #C96A38;
+
+    font-weight: 600;
+
+    font-size: 16px;
+
+    letter-spacing: 0.3px;
+
+    margin-bottom: 45px;
+
+}
+
+
+.insta-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 20px;
+
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+}
+
+
+.insta-item {
+
+    position: relative;
+
+    display: block;
+
+    aspect-ratio: 1 / 1;
+
+    overflow: hidden;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 10px 25px rgba(
+            52,
+            28,
+            24,
+            0.1
+        );
+
+}
+
+
+.insta-item img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition:
+        transform 0.5s ease;
+
+}
+
+
+.insta-overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    background:
+        linear-gradient(
+            150deg,
+            rgba(201, 106, 56, 0.88),
+            rgba(52, 28, 24, 0.88)
+        );
+
+    opacity: 0;
+
+    transition:
+        opacity 0.4s ease;
+
+}
+
+
+.insta-icon {
+
+    width: 30px;
+
+    height: 30px;
+
+}
+
+
+.insta-overlay span {
+
+    color: white;
+
+    font-weight: 600;
+
+    font-size: 14px;
+
+    letter-spacing: 0.5px;
+
+    text-transform: uppercase;
+
+}
+
+
+.insta-item:hover .insta-overlay,
+.insta-item:focus-visible .insta-overlay {
+
+    opacity: 1;
+
+}
+
+
+.insta-item:hover img {
+
+    transform:
+        scale(1.08);
+
+}
+
+
+/* ==================================================
+   RODAPÉ
+================================================== */
+
+.footer {
+
+    background:
+
+        radial-gradient(
+            circle at 5% 10%,
+            rgba(255, 214, 194, 0.35) 0%,
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 95% 85%,
+            rgba(242, 198, 92, 0.38) 0%,
+            rgba(230, 174, 73, 0.18) 20%,
+            transparent 42%
+        ),
+
+        radial-gradient(
+            circle at 80% 100%,
+            rgba(255, 230, 170, 0.22) 0%,
+            transparent 35%
+        ),
+
+        #f8f2e8;
+
+    padding:
+        70px 8% 25px;
+
+    border-top:
+        1px solid #e6e6e6;
+
+}
+
+
+.footer-container {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    flex-wrap: wrap;
+
+    gap: 50px;
+
+}
+
+
+.footer-col {
+
+    flex: 1;
+
+    min-width: 250px;
+
+}
+
+
+.footer-col h2 {
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:
+        clamp(30px, 6vw, 42px);
+
+    margin-bottom: 20px;
+
+    color: #341C18;
+
+}
+
+
+.footer-col h2 span {
+    color: #C96A38;
+}
+
+
+.footer-col h3 {
+
+    font-size: 22px;
+
+    margin-bottom: 25px;
+
+    color: #341C18;
+
+    letter-spacing: 1px;
+
+}
+
+
+.footer-col p {
+
+    color: #6a5f5f;
+
+    font-size: 17px;
+
+    line-height: 2;
+
+}
+
+
+/* ==================================================
+   BOTÃO AGENDA
+================================================== */
+
+.btn_agenda {
+
+    display: inline-block;
+
+    padding: 15px 35px;
+
+    background: #3ebe74;
+
+    color: #000;
+
+    border-radius: 30px;
+
+    text-decoration: none;
+
+    border: 1px solid #b3acac;
+
+    margin-bottom: 30px;
+
+    transition:
+        background-color 0.4s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+
+}
+
+
+.btn_agenda:hover {
+
+    background: #ebdde8;
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 8px 20px rgba(
+            0,
+            0,
+            0,
+            0.15
+        );
+
+}
+
+
+.span_rod {
+
+    display: flex;
+
+    justify-content: flex-start;
+
+}
+
+
+/* ==================================================
+   FOOTER BOTTOM
+================================================== */
+
+.footer-bottom {
+
+    margin-top: 50px;
+
+    padding-top: 25px;
+
+    border-top:
+        1px solid #e8e8e8;
+
+    text-align: center;
+
+    color: #8d8d8d;
+
+    font-size: 15px;
+
+}
+
+
+/* ==================================================
+   ANIMAÇÃO
+================================================== */
+
+.animar {
+
+    opacity: 0;
+
+    transform:
+        translateY(40px);
+
+    transition:
+        opacity 0.9s ease,
+        transform 0.9s ease;
+
+}
+
+
+.animar.aparecer {
+
+    opacity: 1;
+
+    transform:
+        translateY(0);
+
+}
+
+
+/* ==================================================
+   TABLET
+================================================== */
+
+@media (max-width: 1024px) {
+
+    .menu-toggle {
+        display: flex;
+    }
+
+
+    nav {
+
+        position: fixed;
+
+        top: 0;
+
+        right: -100%;
+
+        height: 100vh;
+
+        width: min(
+            78%,
+            320px
+        );
+
+        background: #f8f2e8;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        justify-content: center;
+
+        gap: 30px;
+
+        padding: 40px;
+
+        box-shadow:
+            -12px 0 35px rgba(
+                0,
+                0,
+                0,
+                0.12
+            );
+
+        z-index: 1010;
+
+        transition:
+            right 0.4s ease;
+
+    }
+
+
+    nav.active {
+        right: 0;
+    }
+
+
+    nav a {
+        font-size: 18px;
+    }
+
+
+    nav a.nav-agendar {
+        margin-top: 10px;
+    }
+
+
+    .cards {
+
+        grid-template-columns: 1fr;
+
+        gap: 24px;
+
+    }
+
+
+    .card {
+
+        max-width: 480px;
+
+        width: 100%;
+
+        margin: 0 auto;
+
+    }
+
+
+    .insta-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+}
+
+
+/* ==================================================
+   TABLET GALERIA
+================================================== */
+
+@media (max-width: 900px) {
+
+    .carousel-track img {
+
+        height: 420px;
+
+    }
+
+
+    .carousel-btn {
+
+        width: 45px;
+
+        height: 45px;
+
+        font-size: 22px;
+
+    }
+
+
+    .prev {
+        left: 10px;
+    }
+
+    .next {
+        right: 10px;
+    }
+
+
+    #sobre {
+
+        background-attachment:
+            scroll;
+
+    }
+
+
+    .sobre-conteudo p {
+
+        font-size: 16px;
+
+        line-height: 1.8;
+
+    }
+
+}
+
+
+/* ==================================================
+   CELULAR
+================================================== */
+
+@media (max-width: 600px) {
+
+    section {
+
+        padding:
+            60px 6%;
+
+    }
+
+
+    #galeria {
+
+        padding:
+            60px 6%;
+
+    }
+
+
+    .hero {
+
+        min-height: 100vh;
+
+        padding:
+            110px 6% 50px;
+
+    }
+
+
+    .subtitulo {
+
+        font-size: 14px;
+
+        padding:
+            6px 14px;
+
+    }
+
+
+    .escuro,
+    .laranja {
+
+        font-size:
+            clamp(
+                46px,
+                14vw,
+                70px
+            );
+
+    }
+
+
+    .hero p {
+
+        font-size: 17px;
+
+        padding:
+            0 4px;
+
+    }
+
+
+    .btn {
+
+        padding:
+            13px 25px;
+
+        font-size: 14px;
+
+    }
+
+
+    .carousel-track img {
+
+        height: 280px;
+
+    }
+
+
+    .carousel-btn {
+
+        width: 40px;
+
+        height: 40px;
+
+        font-size: 20px;
+
+    }
+
+
+    .prev {
+        left: 8px;
+    }
+
+    .next {
+        right: 8px;
+    }
+
+
+    .carousel-dots {
+
+        gap: 9px;
+
+        margin-top: 18px;
+
+    }
+
+
+    .dot {
+
+        width: 11px;
+
+        height: 11px;
+
+    }
+
+
+    #servicos h2,
+    #instagram h2 {
+
+        margin-bottom:
+            30px;
+
+    }
+
+
+    .card {
+
+        padding:
+            35px 25px;
+
+        min-height:
+            unset;
+
+    }
+
+
+    .card h3 {
+
+        font-size: 26px;
+
+    }
+
+
+    .card p {
+
+        max-width:
+            100%;
+
+    }
+
+
+    .sobre-overlay {
+
+        padding:
+            80px 6%;
+
+    }
+
+
+    .sobre-conteudo h2 {
+
+        margin-bottom:
+            25px;
+
+    }
+
+
+    .sobre-conteudo p {
+
+        font-size: 15px;
+
+        line-height:
+            1.8;
+
+    }
+
+
+    .insta-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 14px;
+
+    }
+
+
+    .footer {
+
+        padding:
+            60px 6% 25px;
+
+    }
+
+
+    .footer-container {
+
+        gap: 40px;
+
+    }
+
+
+    .footer-col {
+
+        min-width:
+            100%;
+
+    }
+
+
+    .footer-col h3 {
+
+        font-size: 19px;
+
+    }
+
+
+    .footer-col p {
+
+        font-size: 15px;
+
+    }
+
+
+    .span_rod {
+
+        justify-content:
+            flex-start;
+
+    }
+
+}
