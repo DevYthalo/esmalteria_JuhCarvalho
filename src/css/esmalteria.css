@@ -951,32 +951,29 @@ h2 {
     content: "03";
 }
 
+.card:nth-child(4)::after {
+    content: "04";
+}
+
+.card:nth-child(5)::after {
+    content: "05";
+}
+
 
 /* ==================================================
    ÍCONE CARD SERVIÇOS
 ================================================== */
 
 .icone-servico {
-
-    position: relative;
-
-    width: 55px;
-    height: 55px;
-
     display: flex;
-
     align-items: center;
-    justify-content: center;
+    margin-bottom: 12px;
+}
 
-    background: #f8e8dd;
-
-    border-radius: 50%;
-
-    font-size: 25px;
-
-    transition:
-        transform 0.4s ease;
-
+.icone-servico img {
+    width: 110px;
+    height: auto;
+    object-fit: contain;
 }
 
 
@@ -1419,6 +1416,7 @@ h2 {
     line-height: 2;
 
 }
+
 
 
 /* ==================================================
