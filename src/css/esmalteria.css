@@ -539,7 +539,7 @@ h2 {
 }
 
 
-/*adfadf*/
+
 
 /*Mudar tamanho do carrocel*/
 .carousel {
@@ -567,11 +567,6 @@ h2 {
 
     overflow: hidden;
 
-    border-radius: 25px;
-
-    box-shadow:
-        0 20px 45px rgba(0, 0, 0, 0.15);
-
 }
 
 
@@ -579,17 +574,26 @@ h2 {
 
     display: flex;
 
+    align-items: center;
+
     transition:
         transform 0.6s ease;
 
 }
 
 
+/* ==================================================
+   PEEK: mostra um "pedaço" das fotos vizinhas
+   nas laterais antes delas aparecerem por completo
+================================================== */
+
 .carousel-track img {
 
-    min-width: 100%;
+    flex: 0 0 76%;
 
-    width: 100%;
+    width: 76%;
+
+    margin: 0 2%;
 
     height: 650px;
 
@@ -597,21 +601,50 @@ h2 {
 
     object-position: center;
 
+    border-radius: 25px;
+
+    box-shadow:
+        0 20px 45px rgba(0, 0, 0, 0.15);
+
     user-select: none;
+
+    -webkit-user-drag: none;
 
     cursor: pointer;
 
     display: block;
 
+    opacity: 0.45;
+
+    transform: scale(0.92);
+
+    filter: brightness(0.85);
+
     transition:
-        transform 0.5s ease,
-        filter 0.5s ease;
+        transform 0.6s ease,
+        opacity 0.6s ease,
+        filter 0.6s ease;
+
+}
+
+
+.carousel-track img.slide-ativo {
+
+    opacity: 1;
+
+    transform: scale(1);
+
+    filter: brightness(1);
 
 }
 
 
 .carousel-track img:hover {
     filter: brightness(0.95);
+}
+
+.carousel-track img.slide-ativo:hover {
+    filter: brightness(1);
 }
 
 
@@ -1036,11 +1069,11 @@ h2 {
     padding: 0;
 
     background-image:
-        url("../../img/juh.jpeg");
+        url("/img/juh.png");
 
     background-size: cover;
 
-    background-position: center;
+    background-position: center top;
 
     background-repeat: no-repeat;
 
@@ -1604,6 +1637,10 @@ h2 {
 
         height: 420px;
 
+        flex: 0 0 82%;
+        width: 82%;
+        margin: 0 1.5%;
+
     }
 
 
@@ -1724,6 +1761,11 @@ h2 {
     .carousel-track img {
 
         height: 280px;
+
+        flex: 0 0 86%;
+        width: 86%;
+        margin: 0 1%;
+        border-radius: 18px;
 
     }
 

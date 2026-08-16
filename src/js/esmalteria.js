@@ -47,18 +47,38 @@ const dots = document.querySelectorAll(".dot");
 
 // ==========================================
 // ATUALIZA O CARROSSEL
+// (efeito "peek": centraliza o slide ativo e
+// deixa pedaços dos vizinhos visíveis nas laterais)
 // ==========================================
 
 function updateCarousel() {
 
+    const slideAtivo = slides[index];
+
+    const larguraContainer = track.parentElement.clientWidth;
+
+    // Posição do slide ativo dentro da track,
+    // calculada com base na largura real renderizada
+    // (funciona em qualquer tamanho de tela, sem
+    // precisar travar em porcentagens fixas no JS)
+    const deslocamento =
+        slideAtivo.offsetLeft -
+        (larguraContainer - slideAtivo.offsetWidth) / 2;
+
     track.style.transform =
-        `translateX(-${index * 100}%)`;
+        `translateX(-${deslocamento}px)`;
 
     dots.forEach(dot => {
         dot.classList.remove("active");
     });
 
     dots[index].classList.add("active");
+
+    slides.forEach(slide => {
+        slide.classList.remove("slide-ativo");
+    });
+
+    slideAtivo.classList.add("slide-ativo");
 
 }
 
@@ -148,16 +168,51 @@ startAutoPlay();
 
 
 // ==========================================
+// RECENTRALIZA O CARROSSEL AO REDIMENSIONAR
+// (o peek depende da largura real da tela)
+// ==========================================
+
+let resizeTimeout;
+
+window.addEventListener("resize", () => {
+
+    clearTimeout(resizeTimeout);
+
+    resizeTimeout = setTimeout(updateCarousel, 150);
+
+});
+
+
+// Garante que o primeiro slide já nasça
+// centralizado corretamente
+updateCarousel();
+
+
+// ==========================================
 // LIGHTBOX
 // ==========================================
 
-slides.forEach(img => {
+slides.forEach((img, i) => {
 
     img.addEventListener("click", () => {
 
-        lightbox.style.display = "flex";
+        if (i === index) {
 
-        lightboxImg.src = img.src;
+            // clicou na foto central -> amplia
+            lightbox.style.display = "flex";
+
+            lightboxImg.src = img.src;
+
+        } else {
+
+            // clicou numa foto lateral (peek) -> centraliza ela
+            index = i;
+
+            updateCarousel();
+
+            restartAutoPlay();
+
+        }
 
     });
 
@@ -258,6 +313,48 @@ track.addEventListener("touchend", (event) => {
 
 
     restartAutoPlay();
+
+});
+
+
+// ==========================================
+// MENU MOBILE (hambúrguer)
+// ==========================================
+
+const menuToggle = document.getElementById("menu-toggle");
+const navMenu = document.getElementById("nav-menu");
+const navOverlay = document.getElementById("nav-overlay");
+const navLinks = navMenu.querySelectorAll("a");
+
+menuToggle.addEventListener("click", () => {
+
+    navMenu.classList.toggle("active");
+    navOverlay.classList.toggle("active");
+    menuToggle.classList.toggle("active");
+
+});
+
+// Fecha o menu ao clicar em qualquer link
+
+navLinks.forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        navMenu.classList.remove("active");
+        navOverlay.classList.remove("active");
+        menuToggle.classList.remove("active");
+
+    });
+
+});
+
+// Fecha o menu clicando fora (no overlay escuro)
+
+navOverlay.addEventListener("click", () => {
+
+    navMenu.classList.remove("active");
+    navOverlay.classList.remove("active");
+    menuToggle.classList.remove("active");
 
 });
 
